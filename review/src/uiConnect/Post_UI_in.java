@@ -11,9 +11,9 @@ import javax.swing.JTextField;
 
 public class Post_UI_in {
 
-	public static void main(String[] args) {
+	public static void Post_ui() {
 		JFrame f = new JFrame();
-		f.setSize(500,400);
+		f.setSize(600,500);
 		f.setTitle("게시글 작성");
 		FlowLayout flow = new FlowLayout();
 		f.setLayout(flow);

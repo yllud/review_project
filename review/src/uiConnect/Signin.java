@@ -14,6 +14,9 @@ import javax.swing.JTextField;
 
 import dbConnect.MembersDAO;
 
+
+
+
 public class Signin {
 
 	public static void signin() {
@@ -138,7 +141,7 @@ public class Signin {
 			}
 		});
 
-		Font font = new Font("D2Coding", Font.BOLD, 50);
+		Font font = new Font("D2Coding", Font.BOLD, 45);
 		// 필요한 객체 준비 완료
 
 		

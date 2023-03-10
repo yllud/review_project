@@ -14,7 +14,16 @@ import javax.swing.JTextField;
 
 import dbConnect.MembersDAO;
 
+
+
+
 public class Login_UI {
+	
+	private static String id;
+	
+	public static String getId() {
+		return id;
+	}
 
 	public static void main(String[] args) {
 		JFrame f = new JFrame();
@@ -40,7 +49,7 @@ public class Login_UI {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String id = t1.getText();
+				id = t1.getText();
 				String pw = t2.getText();
 				
 				MembersDAO dao= new MembersDAO();
@@ -89,10 +98,7 @@ public class Login_UI {
 			} 
 		});
 		
-		
-		
-		
-		
+	
 		
 		l1.setFont(font1);
 		l2.setFont(font1);
@@ -112,9 +118,6 @@ public class Login_UI {
 		f.add(b3);
 		
 		
-		
-		
-	
 		
 		f.setVisible(true);
 	}
