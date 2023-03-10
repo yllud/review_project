@@ -14,11 +14,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import dbConnect.PostDAO2;
-import dbConnect.PostVO;
 import dbConnect.PostVO2;
 
-public class PostUI2 {
-
+public class Post_UI {
 	public void open() {
 		JFrame f = new JFrame();
 		f.setTitle("게시판 화면");
@@ -140,8 +138,8 @@ public class PostUI2 {
 
 				String no = t1.getText();
 				int no2 = Integer.parseInt(no);
-				PostDAO dao = new PostDAO();
-				PostVO bag = dao.one(no2);
+				PostDAO2 dao = new PostDAO2();
+				PostVO2 bag = dao.one(no2);
 				if (bag != null) {
 					t2.setText(bag.getTitle());
 					t3.setText(bag.getContent());
@@ -233,5 +231,4 @@ public class PostUI2 {
 		f.setVisible(true);
 
 	}
-
 }

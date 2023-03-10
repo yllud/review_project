@@ -136,8 +136,8 @@ public class PlaceUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Post_UI_in post = new Post_UI_in();
-				post.Post_ui();
+				Post_UI post = new Post_UI();
+				post.open();
 				// 화면 닫는거
 				// f.setVisible(false);
 			}

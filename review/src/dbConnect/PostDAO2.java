@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 
 public class PostDAO2 {
 	
-	public PostVO one(int post_no) {
+	public PostVO2 one(int post_no) {
 		
 		
 		
@@ -66,7 +66,7 @@ public class PostDAO2 {
 			e.printStackTrace();
 		}
 
-		return bag; 
+		return null; 
 	}
 		
 
