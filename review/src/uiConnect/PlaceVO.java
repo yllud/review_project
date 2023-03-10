@@ -8,6 +8,7 @@ public class PlaceVO {
 	private String place_grade;
 	private String place_category;
 	private String place_tel;
+	private String place_img;
 	
 	public String getPlace_code() {
 		return place_code;
@@ -57,11 +58,19 @@ public class PlaceVO {
 		this.place_tel = place_tel;
 	}
 
+	public String getPlace_img() {
+		return place_img;
+	}
+
+	public void setPlace_img(String place_img) {
+		this.place_img = place_img;
+	}
+
 	@Override
 	public String toString() {
 		return "PlaceVO [place_code=" + place_code + ", place_name=" + place_name + ", place_location=" + place_location
 				+ ", place_grade=" + place_grade + ", place_category=" + place_category + ", place_tel=" + place_tel
-				+ "]";
+				+ ", place_img=" + place_img + "]";
 	}
 	
 }
