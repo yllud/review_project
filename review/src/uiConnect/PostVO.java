@@ -1,6 +1,6 @@
-package dbConnect;
+package uiConnect;
 
-public class PostVO2 {
+public class PostVO {
 	private int post_no;
 	private String title;
 	private String content;

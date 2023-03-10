@@ -13,10 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import dbConnect.PostDAO2;
-import dbConnect.PostVO2;
+import dbConnect.PostDAO;
 
-public class Post_UI {
+public class Post_UI2 {
 	public void open() {
 		JFrame f = new JFrame();
 		f.setTitle("게시판 화면");
@@ -65,8 +64,8 @@ public class Post_UI {
 					JOptionPane.showMessageDialog(f, "게시판 제목은 필수 입력 항목입니다.");
 				}
 
-				PostDAO2 dao = new PostDAO2();
-				PostVO2 bag = new PostVO2();
+				PostDAO dao = new PostDAO();
+				PostVO bag = new PostVO();
 				bag.setPost_no(no2);
 				bag.setTitle(title);
 				bag.setContent(content);
@@ -94,7 +93,7 @@ public class Post_UI {
 				String id = t1.getText();
 				
 				int id2 = Integer.parseInt(id);
-				PostDAO2 dao = new PostDAO2();
+				PostDAO dao = new PostDAO();
 				int result = dao.delete(id2);
 				if (result == 1) {
 					JOptionPane.showMessageDialog(f, "게시판 삭제 성공");
@@ -115,8 +114,8 @@ public class Post_UI {
 				String title = t4.getText(); // ""
 				
 				int no2 = Integer.parseInt(no);
-				PostDAO2 dao = new PostDAO2();
-				PostVO2 bag = new PostVO2();
+				PostDAO dao = new PostDAO();
+				PostVO bag = new PostVO();
 				bag.setPost_no(no2);
 				bag.setTitle(title);
 				int result = dao.update(bag);
@@ -138,8 +137,8 @@ public class Post_UI {
 
 				String no = t1.getText();
 				int no2 = Integer.parseInt(no);
-				PostDAO2 dao = new PostDAO2();
-				PostVO2 bag = dao.one(no2);
+				PostDAO dao = new PostDAO();
+				PostVO bag = dao.one(no2);
 				if (bag != null) {
 					t2.setText(bag.getTitle());
 					t3.setText(bag.getContent());

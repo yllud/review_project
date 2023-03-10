@@ -18,6 +18,14 @@ import dbConnect.PlaceDAO;
 
 
 public class PlaceUI {
+	
+	private static String place_code;
+	
+
+	public static String getPlace_code() {
+		return place_code;
+	}
+
 
 	public void open() {
 		// 지점 UI 만들기
@@ -62,20 +70,20 @@ public class PlaceUI {
 		ImageIcon icon = new ImageIcon("first.jpg");
 		label_img.setIcon(icon);
 
-		JButton btn_find = new JButton("게시물 검색");
+		JButton btn_find = new JButton("상호명 검색");
 		JButton btn_pass = new JButton("게시물 보기");
-		JButton btn_update = new JButton("게시물 수정");
-		JButton btn_del = new JButton("게시물 삭제");
+		JButton btn_update = new JButton("상호명 수정");
+		JButton btn_write = new JButton("게시물 작성");
 		JButton btn_reservation = new JButton("예약하기");
 		btn_find.setFont(font);
 		btn_pass.setFont(font);
 		btn_update.setFont(font);
-		btn_del.setFont(font);
+		btn_write.setFont(font);
 		btn_reservation.setFont(font);
 		btn_find.setBackground(Color.LIGHT_GRAY);
 		btn_pass.setBackground(Color.LIGHT_GRAY);
 		btn_update.setBackground(Color.LIGHT_GRAY);
-		btn_del.setBackground(Color.LIGHT_GRAY);
+		btn_write.setBackground(Color.LIGHT_GRAY);
 		btn_reservation.setForeground(Color.yellow);
 		btn_reservation.setBackground(Color.blue);
 
@@ -93,7 +101,7 @@ public class PlaceUI {
 		f.add(btn_find);
 		f.add(btn_pass);
 		f.add(btn_update);
-		f.add(btn_del);
+		f.add(btn_write);
 		f.add(btn_reservation);
 
 		// 게시물 찾기
@@ -112,6 +120,7 @@ public class PlaceUI {
 					text_category.setText(bag.getPlace_category());
 					text_grade.setText(bag.getPlace_grade());
 					text_tel.setText(bag.getPlace_tel());
+					
 					if (bag.getPlace_img() != null) {
 						ImageIcon icon = new ImageIcon(bag.getPlace_img());
 						label_img.setIcon(icon);
@@ -136,10 +145,31 @@ public class PlaceUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Post_UI post = new Post_UI();
-				post.open();
-				// 화면 닫는거
-				// f.setVisible(false);
+				System.out.println("해당 게시물 보기");
+				String name = text_name.getText();
+				
+				
+				PlaceDAO dao = new PlaceDAO();
+				PlaceVO bag = dao.one(name);
+				if (bag != null) {
+					place_code=bag.getPlace_code();
+					Post_UI1 post = new Post_UI1();
+					post.open();
+					// 화면 닫는거
+					// f.setVisible(false);
+					
+				} else {
+					JOptionPane.showMessageDialog(f, "찾으시는 상호명이 없습니다.");
+					text_location.setText("");
+					text_category.setText("");
+					text_grade.setText("");
+					text_tel.setText("");
+					ImageIcon icon = new ImageIcon("first.jpg");
+					label_img.setIcon(icon);
+				}
+				
+				
+
 			}
 		});
 
@@ -171,37 +201,40 @@ public class PlaceUI {
 				}
 			}
 		});
-
-		btn_del.addActionListener(new ActionListener() {
+		
+		btn_write.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("해당 게시물 작성");
 				String name = text_name.getText();
-
-				if (name.equals("")) {
-					System.out.println("상호명은 필수입력항목입니다.");
-				}
-
-				System.out.println("지점 삭체 처리");
+				
+				
 				PlaceDAO dao = new PlaceDAO();
-				int result = dao.del(name);
-				if (result >= 1) {
-					JOptionPane.showMessageDialog(f, "상호명 삭제 성공");
-					text_name.setText("");
-					text_location.setText("");
-					text_category.setText("");
-					text_grade.setText("");
-					text_tel.setText("");
+				PlaceVO bag = dao.one(name);
+				if (bag != null) {
+					place_code=bag.getPlace_code();
+					Post_UI2 post = new Post_UI2();
+					post.open();
+					// 화면 닫는거
+					// f.setVisible(false);
+					
 				} else {
-					JOptionPane.showMessageDialog(f, "존재하지 않는 상호명. 재입력해주세요");
-					text_name.setText("");
+					JOptionPane.showMessageDialog(f, "찾으시는 상호명이 없습니다.");
 					text_location.setText("");
 					text_category.setText("");
 					text_grade.setText("");
 					text_tel.setText("");
+					ImageIcon icon = new ImageIcon("first.jpg");
+					label_img.setIcon(icon);
 				}
+				
+				
+
 			}
 		});
+
+		
 		
 		// 예약 창으로 넘기기
 		btn_reservation.addActionListener(new ActionListener() {

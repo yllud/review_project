@@ -34,6 +34,7 @@ public class PlaceDAO {
 			if (rs.next()) { // 검색결과가 있는지 여부는 res.next()
 				// true이면 있다라는 의미, false이면 없다라는 의미
 				System.out.println("검색결과 있음. 성공");
+				String place_code=rs.getString(1);
 				String place_name2 = rs.getString(2);
 				String place_location = rs.getString(3);
 				String place_grade = rs.getString(4);
@@ -44,6 +45,7 @@ public class PlaceDAO {
 						+ place_tel + " " + place_img);
 				// 검색결과를 검색화면 UI부분을 주어야함
 				bag = new PlaceVO();
+				bag.setPlace_code(place_code);
 				bag.setPlace_name(place_name2);
 				bag.setPlace_location(place_location);
 				bag.setPlace_grade(place_grade);
@@ -76,6 +78,7 @@ public class PlaceDAO {
 
 			String sql = "update hr.PLACE set PLACE_LOCATION = ?, PLACE_GRADE = ?, PLACE_CATEGORY = ?, PLACE_TEL = ? where PLACE_NAME = ?";
 			PreparedStatement ps = con.prepareStatement(sql); // PreparedStatement
+			
 			ps.setString(1, bag.getPlace_location());
 			ps.setString(2, bag.getPlace_grade());
 			ps.setString(3, bag.getPlace_category());

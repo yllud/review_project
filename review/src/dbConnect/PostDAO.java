@@ -1,43 +1,44 @@
+
 package dbConnect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import uiConnect.MembersVO;
+import uiConnect.PlaceUI;
+import uiConnect.PostVO;
 
 
 
-public class PostDAO2 {
+public class PostDAO {
 	
-	public PostVO2 one(int post_no) {
-		
-		
+	public PostVO one(int post_no) {
 		
 		ResultSet rs = null; 
-		
-	
 		PostVO bag = null;
 		try {
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-			
+			System.out.println("1. 오라클과 자바 연결할 부품 설정 성공");
 			 
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "system";
 			String password = "oracle";
-			Connection con = DriverManager.getConnection(url, user, password); //Connection
+			Connection con = DriverManager.getConnection(url, user, password); //Connection			
+			System.out.println("2. 오라클 연결 성공");
 			
-
-			
-	
-			String sql = "select*from hr.POST where POST_NO = ? ";
+			String sql = "select * from hr.POST where POST_NO = ?";
 			PreparedStatement ps = con.prepareStatement(sql); //PreparedStatement
 			ps.setInt(1, post_no);
-			
+			System.out.println("3. postdao SQL문 부품(객체)으로 만들어주기");
 	
 			
-			rs = ps.executeQuery();  
+			rs = ps.executeQuery();
+			
+			System.out.println("4. SQL문 오라클로 보내기 성공");
 			if(rs.next()) { 
 				int post_no1 = rs.getInt(1); 
 				String title = rs.getString(2);
@@ -66,9 +67,8 @@ public class PostDAO2 {
 			e.printStackTrace();
 		}
 
-		return null; 
-	}
-		
+		return bag; 
+	}		
 
 public int delete(int post_no) {
 	
@@ -107,7 +107,7 @@ public int delete(int post_no) {
 	return result;
 }
 
-public int update(PostVO2 bag) {
+public int update(PostVO bag) {
 	
 	int result = 0;
 	
@@ -140,7 +140,7 @@ public int update(PostVO2 bag) {
 }
 
 
-public int insert(PostVO2 bag) {
+public int insert(PostVO bag) {
 
 	int result = 0;
 	
@@ -184,7 +184,72 @@ public int insert(PostVO2 bag) {
 	
 }
 
-
+public ArrayList<PostVO> list() {
+	ResultSet rs = null; //항목명+결과 데이터를 담고 있는 테이블
+	
+	ArrayList<PostVO> list=new ArrayList<>();
+	PostVO bag = null;
+	try {
+		// 1.오라클 11g와 연결한 부품 설정
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		System.out.println("1. 오라클과 자바 연결할 부품 설정 성공.");
+		
+		
+		// 2.오라클 11g에 연결해보자.(java --- oracle) 
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "system";
+		String password = "oracle";
+		Connection con = DriverManager.getConnection(url, user, password); //Connection
+		//String data = JOptionPane.showInputDialog("이름입력"); //String, 임아무개 
+		System.out.println("2. 오라클 연결 성공.");
+		
+		PlaceUI pu=new PlaceUI();
+		String place_code=pu.getPlace_code();
+		String sql = "select * from hr.POST where place_code="+place_code+" order by POST_NO desc";
+		PreparedStatement ps = con.prepareStatement(sql); //PreparedStatement
+		//ps.setString(1, id);
+		System.out.println("3. SQL문 부품(객체)으로 만들어주기 성공.");
+		
+		rs = ps.executeQuery(); 
+		System.out.println("4. SQL문 오라클로 보내기 성공.");
+		while(rs.next()) {
+			System.out.println("검색 결과 있음 성공.");
+			
+			int post_no=rs.getInt(1);
+			String title=rs.getString(2);
+			String content=rs.getString(3);
+			String writer= rs.getString(4);
+			int score= rs.getInt(5);
+			String write_date= rs.getString(6);
+			//int place_code = rs.getString(7);
+			
+			String mem_addr = rs.getString(5);
+//			System.out.println(	id2 + " " 
+//					+ pw + " " 
+//					+ name + " " 
+//					+ age);
+			
+			
+			System.out.println(post_no+" "+title);
+			bag = new PostVO();
+			bag.setPost_no(post_no);
+			bag.setTitle(title);
+			bag.setContent(content);
+			bag.setWriter(writer);
+			bag.setScore(score);
+			bag.setWrite_date(write_date);
+			
+			list.add(bag);
+			
+		}
+		//System.out.println(result);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+	return list;
+	
+}
 
 }
 
