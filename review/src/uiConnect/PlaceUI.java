@@ -27,23 +27,20 @@ public class PlaceUI {
 		f.setTitle("지점 정보");
 		f.setLayout(lay);
 		
-		// String[] img = {"cafe.jpg", "lotteworld.jpg", "signiel.jpg", "dogpension.jpg", "udon.jpg"};
-
-		
 		Font font_title = new Font("돋움", 1, 40);
 		Font font = new Font("돋움", 1, 30);
 
 		JTextField text_name = new JTextField(8);
 		text_name.setFont(font);
 
-//		JLabel label_code = new JLabel();
+
 		JLabel label_img = new JLabel();
 		JLabel label_name = new JLabel("상 호 명 : ");
 		JLabel label_location = new JLabel("위    치 : ");
 		JLabel label_grade = new JLabel("평    점 : ");
 		JLabel label_category = new JLabel("카테고리 : ");
 		JLabel label_tel = new JLabel("연 락 처 : ");
-//		label_code.setFont(font);
+
 		label_name.setFont(font);
 		label_location.setFont(font);
 		label_grade.setFont(font);
@@ -106,8 +103,8 @@ public class PlaceUI {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("게시물 찾기");
 				String name = text_name.getText();
+				
 				// 이미지 넣기....
-
 				PlaceDAO dao = new PlaceDAO();
 				PlaceVO bag = dao.one(name);
 				if (bag != null) {
@@ -115,12 +112,21 @@ public class PlaceUI {
 					text_category.setText(bag.getPlace_category());
 					text_grade.setText(bag.getPlace_grade());
 					text_tel.setText(bag.getPlace_tel());
+					if (bag.getPlace_img() != null) {
+						ImageIcon icon = new ImageIcon(bag.getPlace_img());
+						label_img.setIcon(icon);
+					} else {
+						ImageIcon icon = new ImageIcon("first.jpg");
+						label_img.setIcon(icon);
+					}
 				} else {
 					JOptionPane.showMessageDialog(f, "찾으시는 항목이 없습니다.");
 					text_location.setText("");
 					text_category.setText("");
 					text_grade.setText("");
 					text_tel.setText("");
+					ImageIcon icon = new ImageIcon("first.jpg");
+					label_img.setIcon(icon);
 				}
 			}
 		});
