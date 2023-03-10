@@ -21,7 +21,7 @@ import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 public class reservationUI {
-	public static void main(String[] args) {
+	public void open() {
 		Login_UI id = new Login_UI();
 		int rnum = (int) (Math.random() * 9999);
 		String rid = id.getId();
