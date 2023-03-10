@@ -15,11 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import dbConnect.reservationDAO;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
-import project.Login_UI;
-import project.reservationDAO;
 
 public class reservationUI {
 	public static void main(String[] args) {

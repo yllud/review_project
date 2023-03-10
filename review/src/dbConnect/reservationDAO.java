@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import uiConnect.reservationVO;
+
 public class reservationDAO { // CRUD
 
 	public int insert(reservationVO bag) {
