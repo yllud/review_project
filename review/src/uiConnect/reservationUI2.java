@@ -40,9 +40,12 @@ public class reservationUI2 {
 
 		JTable table = new JTable(all, header);
 		table.setBackground(Color.pink);
+		table.setGridColor(Color.white);
+		table.setSelectionBackground(Color.white);
 		JScrollPane scroll = new JScrollPane(table);
 
 		f.setLayout(new FlowLayout());
+		f.getContentPane().setBackground(Color.white);
 
 		f.add(scroll);
 

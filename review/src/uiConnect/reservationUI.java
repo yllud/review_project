@@ -104,6 +104,15 @@ public class reservationUI {
 		placeLable.setBounds(70, 450, 200, 50);
 		cb.setBounds(230, 460, 190, 30);
 		
+		cb.setBackground(Color.white);
+		datePicker.setBackground(Color.pink);
+		
+		minusButton.setBackground(Color.white);
+		minusButton.setBorderPainted(false);
+		
+		plusButton.setBackground(Color.white);
+		plusButton.setBorderPainted(false);
+		
 		reserveButton.setBorderPainted(false);
 		reserveButton.setBackground(Color.pink);
 		
@@ -125,6 +134,11 @@ public class reservationUI {
 		f.add(p1);
 		f.add(p2);
 		f.add(p5);
+		f.getContentPane().setBackground(Color.white);
+		p1.setBackground(Color.white);
+		p5.setBackground(Color.white);
+		p6.setBackground(Color.white);
+		p7.setBackground(Color.white);
 
 		minusButton.addActionListener(new ActionListener() {
 
