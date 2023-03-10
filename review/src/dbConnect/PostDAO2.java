@@ -13,45 +13,32 @@ public class PostDAO2 {
 		
 		
 		
-		ResultSet rs = null; // Ç×¸ñ(=ÇÊµå ,ÄÃ·³,¼Ó¼º)¸í + °á°úµ¥ÀÌÅÍ¸¦ ´ã°í ÀÖ´Â Å×ÀÌºí
-		//±âº»Çü Á¤¼ö/½Ç¼ö/¹®ÀÚ/³í¸®¸¸ °ª(0)À¸·Î ÃÊ±âÈ­
-		//³ª¸ÓÁö µ¥ÀÌÅÍÇü(ÂüÁ¶Çü) ÁÖ¼Ò°¡! µé¾î°¡ÀÖÀ½ (null) ·Î ÃÊ±âÈ­
+		ResultSet rs = null; 
 		
-		// MemberVO bag ÀÇ ¾²·¹±â°ª ÃÊ±âÈ­ (null)
+	
 		PostVO bag = null;
 		try {
-			// 1.¿À¶óÅ¬ 11g¿Í ¿¬°áÇÑ ºÎÇ° ¼³Á¤
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("1. ¿À¶óÅ¬°ú ÀÚ¹Ù ¿¬°áÇÒ ºÎÇ° ¼³Á¤ ¼º°ø.");
-//			Locale.setDefault(Locale.US); //¸Æ locale¿¡·¯³ª½Å ºÐµé¸¸!!!
 			
-			// 2.¿À¶óÅ¬ 11g¿¡ ¿¬°áÇØº¸ÀÚ.(java --- oracle) 
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			
+			 
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "system";
 			String password = "oracle";
 			Connection con = DriverManager.getConnection(url, user, password); //Connection
-			//String data = JOptionPane.showInputDialog("ÀÌ¸§ÀÔ·Â"); //String, ÀÓ¾Æ¹«°³ 
-			System.out.println("2. ¿À¶óÅ¬ ¿¬°á ¼º°ø.");
 			
-			//ipaddress ==> InetAddress
-			//String url = "http://wwww.naver.com";
-			//URL u = new URL(url);
-			//ÀÚ¹Ù´Â ºÎÇ°Á¶¸³½ÄÀÌ¿©¼­,String¿¡ ³ÖÀº ¹®ÀÚ¿­À» Æ¯Á¤ÇÑ ºÎÇ°À¸·Î ÀÎ½ÄÇÏÁö ¸øÇÔ.
-			//Æ¯Á¤ÇÑ ºÎÇ°À¸·Î ÀÎ½ÄÇÏ·Á¸é ±× ºÎÇ°À¸·Î ¸¸µé¾îÁÖ¾î¾ß ÇÑ´Ù.
-			//SQLºÎÇ°À¸·Î ¸¸µé¾îÁÖ¾î¾ß ÇÔ.
-			//PreparedStatement°¡ SQLºÎÇ°!!
+
 			
+	
 			String sql = "select*from hr.POST where POST_NO = ? ";
 			PreparedStatement ps = con.prepareStatement(sql); //PreparedStatement
 			ps.setInt(1, post_no);
-			//conºÎÇ°À¸·Î sql½ºÆ®¸µ¿¡ ÀÖ´Â °Í SQLºÎÇ°À¸·Î ¸¸µé¾îÁÖ¼¼¿ä.
-			System.out.println("3. SQL¹® ºÎÇ°(°´Ã¼)À¸·Î ¸¸µé¾îÁÖ±â ¼º°ø.");
 			
-			rs = ps.executeQuery();  //insert, update, delete¹®¸¸!! sql¹® ½ÇÇà°á°ú°¡ int
-			System.out.println("4. SQL¹® ¿À¶óÅ¬·Î º¸³»±â ¼º°ø.");
-			if(rs.next()) { // °Ë»ö °á°ú°¡ ÀÖ´Â Áö ¿©ºÎ´Â rs.next() ·Î ÇÑ´Ù
-				// true ÀÌ¸é ÀÖ´Ù ¶ó´Â ÀÇ¹Ì , false ÀÌ¸é ¾ø´Ù ¶ó´Â ÀÇ¹Ì.
-				System.out.println("°Ë»ö °á°ú Á¸Àç.");
+	
+			
+			rs = ps.executeQuery();  
+			if(rs.next()) { 
 				int post_no1 = rs.getInt(1); 
 				String title = rs.getString(2);
 				String content = rs.getString(3);
@@ -68,21 +55,18 @@ public class PostDAO2 {
 				bag.setWriter(writer);
 				bag.setScore(score);
 				bag.setPlace_code(place_code);
-				// °Ë»ö°á°ú¸¦ °Ë»öÈ­¸é UI ºÎºÐÀ¸·Î ÁÖ¾î¾ßÇÑ´Ù.
+				
 				
 			}else {
-				System.out.println("°Ë»ö °á°ú ¾øÀ½");
+				System.out.println("ê²€ìƒ‰ ê²°ê³¼ ì—†ìŒ.");
 			}
 			
 			//System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//return id, pw,name,tel Àº XXXXXX!
-		//return µÚ¿¡´Â ¹Ýµå½Ã ¿©·¯ µ¥ÀÌÅÍ¸¦ ¹­¾î¼­ ¸®ÅÏÇØÁÖ¾î¾ßÇÔ
-		//°Ë»ö°á°ú°¡ ÀÖÀ»¶§´Â bag¿¡ µ¥ÀÌÅÍ°¡ µé¾îÀÖÀ½.
-		//°Ë»ö°á°ú ¾øÀ» ¶§´Â bag¿¡ ¹«¾ùÀÌ µé¾îÀÖ³ª?? Null!!
-		return bag; // bag Å¸ÀÔÀ» public MemberVO º¯¼ö¸í(°Ë»ö ¿øÇÏ´Â º¯¼ö¼±¾ð) À¸·Î ¼³Á¤ÇØÁà¾ßÇÔ!!
+
+		return bag; 
 	}
 		
 
@@ -91,37 +75,29 @@ public int delete(int post_no) {
 	int result = 0;
 	
 	try {
-		// 1.¿À¶óÅ¬ 11g¿Í ¿¬°áÇÑ ºÎÇ° ¼³Á¤
+
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		System.out.println("1. ¿À¶óÅ¬°ú ÀÚ¹Ù ¿¬°áÇÒ ºÎÇ° ¼³Á¤ ¼º°ø.");
-//		Locale.setDefault(Locale.US); //¸Æ locale¿¡·¯³ª½Å ºÐµé¸¸!!!
+
+
 		
-		// 2.¿À¶óÅ¬ 11g¿¡ ¿¬°áÇØº¸ÀÚ.(java --- oracle) 
+
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "system";
 		String password = "oracle";
-		Connection con = DriverManager.getConnection(url, user, password); //Connection
-		//String data = JOptionPane.showInputDialog("ÀÌ¸§ÀÔ·Â"); //String, ÀÓ¾Æ¹«°³ 
-		System.out.println("2. ¿À¶óÅ¬ ¿¬°á ¼º°ø.");
+		Connection con = DriverManager.getConnection(url, user, password); 
+
 		
-		//ipaddress ==> InetAddress
-		//String url = "http://wwww.naver.com";
-		//URL u = new URL(url);
-		//ÀÚ¹Ù´Â ºÎÇ°Á¶¸³½ÄÀÌ¿©¼­,String¿¡ ³ÖÀº ¹®ÀÚ¿­À» Æ¯Á¤ÇÑ ºÎÇ°À¸·Î ÀÎ½ÄÇÏÁö ¸øÇÔ.
-		//Æ¯Á¤ÇÑ ºÎÇ°À¸·Î ÀÎ½ÄÇÏ·Á¸é ±× ºÎÇ°À¸·Î ¸¸µé¾îÁÖ¾î¾ß ÇÑ´Ù.
-		//SQLºÎÇ°À¸·Î ¸¸µé¾îÁÖ¾î¾ß ÇÔ.
-		//PreparedStatement°¡ SQLºÎÇ°!!
+		
 		
 		String sql = "delete from hr.POST where POST_NO = ? ";
 		PreparedStatement ps = con.prepareStatement(sql); //PreparedStatement
 		ps.setInt(1, post_no);
-		//conºÎÇ°À¸·Î sql½ºÆ®¸µ¿¡ ÀÖ´Â °Í SQLºÎÇ°À¸·Î ¸¸µé¾îÁÖ¼¼¿ä.
-		System.out.println("3. SQL¹® ºÎÇ°(°´Ã¼)À¸·Î ¸¸µé¾îÁÖ±â ¼º°ø.");
+
+	
 		
-		result = ps.executeUpdate();  //insert, update, delete¹®¸¸!! sql¹® ½ÇÇà°á°ú°¡ int
-		System.out.println("4. SQL¹® ¿À¶óÅ¬·Î º¸³»±â ¼º°ø.");
+		result = ps.executeUpdate(); 
 		if(result == 1) {
-			System.out.println("Å»Åð ¼º°ø.");
+			System.out.println("íƒˆí‡´ ì„±ê³µ.");
 		}
 		
 		//System.out.println(result);
@@ -136,38 +112,25 @@ public int update(PostVO2 bag) {
 	int result = 0;
 	
 	try {
-		// 1.¿À¶óÅ¬ 11g¿Í ¿¬°áÇÑ ºÎÇ° ¼³Á¤
+
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		System.out.println("1. ¿À¶óÅ¬°ú ÀÚ¹Ù ¿¬°áÇÒ ºÎÇ° ¼³Á¤ ¼º°ø.");
-//		Locale.setDefault(Locale.US); //¸Æ locale¿¡·¯³ª½Å ºÐµé¸¸!!!
-		
-		// 2.¿À¶óÅ¬ 11g¿¡ ¿¬°áÇØº¸ÀÚ.(java --- oracle) 
+
+
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "system";
 		String password = "oracle";
-		Connection con = DriverManager.getConnection(url, user, password); //Connection
-		//String data = JOptionPane.showInputDialog("ÀÌ¸§ÀÔ·Â"); //String, ÀÓ¾Æ¹«°³ 
-		System.out.println("2. ¿À¶óÅ¬ ¿¬°á ¼º°ø.");
-		
-		//ipaddress ==> InetAddress
-		//String url = "http://wwww.naver.com";
-		//URL u = new URL(url);
-		//ÀÚ¹Ù´Â ºÎÇ°Á¶¸³½ÄÀÌ¿©¼­,String¿¡ ³ÖÀº ¹®ÀÚ¿­À» Æ¯Á¤ÇÑ ºÎÇ°À¸·Î ÀÎ½ÄÇÏÁö ¸øÇÔ.
-		//Æ¯Á¤ÇÑ ºÎÇ°À¸·Î ÀÎ½ÄÇÏ·Á¸é ±× ºÎÇ°À¸·Î ¸¸µé¾îÁÖ¾î¾ß ÇÑ´Ù.
-		//SQLºÎÇ°À¸·Î ¸¸µé¾îÁÖ¾î¾ß ÇÔ.
-		//PreparedStatement°¡ SQLºÎÇ°!!
+		Connection con = DriverManager.getConnection(url, user, password);
+
 		
 		String sql = "update hr.POST set TITLE = ? where POST_NO = ?";
 		PreparedStatement ps = con.prepareStatement(sql); //PreparedStatement
 		ps.setString(1, bag.getTitle());
 		ps.setInt(2, bag.getPost_no());
-		//conºÎÇ°À¸·Î sql½ºÆ®¸µ¿¡ ÀÖ´Â °Í SQLºÎÇ°À¸·Î ¸¸µé¾îÁÖ¼¼¿ä.
-		System.out.println("3. SQL¹® ºÎÇ°(°´Ã¼)À¸·Î ¸¸µé¾îÁÖ±â ¼º°ø.");
+
 		
-		result = ps.executeUpdate();  //insert, update, delete¹®¸¸!! sql¹® ½ÇÇà°á°ú°¡ int
-		System.out.println("4. SQL¹® ¿À¶óÅ¬·Î º¸³»±â ¼º°ø.");
+		result = ps.executeUpdate();  
 		if (result == 1) {
-			System.out.println("È¸¿ø ¼öÁ¤ ¼º°ø!");
+			System.out.println("ìˆ˜ì • ì„±ê³µ!");
 		}
 		//System.out.println(result);
 	} catch (Exception e) {
@@ -178,37 +141,22 @@ public int update(PostVO2 bag) {
 
 
 public int insert(PostVO2 bag) {
-	// 1. °¡¹æÀ» ¹Þ¾Æ¼­ º¯¼ö¿¡ ³Ö¾îÁÖ¼¼¿ä. MemberVO bag
+
 	int result = 0;
 	
 	try {
-		// 1. ¿À¶óÅ¬ 11g ¿Í ¿¬°áÇÑ ºÎÇ° ¼³Á¤
+	
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		System.out.println("1. ¿À¶óÅ¬°ú ÀÚ¹Ù ¿¬°áÇÒ ºÎÇ° ¼³Á¤ ¼º°ø.");
 		
-		// 2. ¿À¶óÅ¬ 11g ¿¡ ¿¬°áÇØº¸ÀÚ (java --- oracle)
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "system";
 		String password = "oracle";
-		Connection con = DriverManager.getConnection(url, user, password);//Connection
-		//String data = JOptionPane.showInputDialog("ÀÌ¸§ÀÔ·Â"); //String, ÀÓ¾Æ¹«°³ 
-		System.out.println("2.¿À¶óÅ¬ ¿¬°á ¼º°ø.");
+		Connection con = DriverManager.getConnection(url, user, password);
 		
-		//ipaddress ==> InetAddress
-		//String url = "http://wwww.naver.com";
-		//URL u = new URL(url);
-		//ÀÚ¹Ù´Â ºÎÇ°Á¶¸³½ÄÀÌ¿©¼­,String¿¡ ³ÖÀº ¹®ÀÚ¿­À» Æ¯Á¤ÇÑ ºÎÇ°À¸·Î ÀÎ½ÄÇÏÁö ¸øÇÔ.
-		//Æ¯Á¤ÇÑ ºÎÇ°À¸·Î ÀÎ½ÄÇÏ·Á¸é ±× ºÎÇ°À¸·Î ¸¸µé¾îÁÖ¾î¾ß ÇÑ´Ù.
-		//SQLºÎÇ°À¸·Î ¸¸µé¾îÁÖ¾î¾ß ÇÔ.
-		//PreparedStatement°¡ SQLºÎÇ°!!
 		
 		String sql = "insert into hr.POST values (?,?,?,?,?,SYSDATE,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
-		//con ºÎÇ°À¸·Î sql ½ºÆ®¸µ¿¡ ÀÖ´Â°Í SQL ºÎÇ°À¸·Î ¸¸µé¾îÁÖ¼¼¿ä
-		//R »©°í, ÀÎµ¦½º 0ºÎÅÍ ½ÃÀÛ!!
-		//À¯ÀÏÇÏ°Ô db´Â ÀÎµ¦½º°¡ 1ºÎÅÍ ½ÃÀÛ
 		
-		//2. °¡¹æ¿¡¼­ °ªµéÀ» ÇÏ³ª¾¿ ²¨³»¾²¼¼¿ä
 		
 		ps.setInt(1, bag.getPost_no()); // ps.setInt(1,no);
 		ps.setString(2, bag.getTitle()); 
@@ -218,17 +166,16 @@ public int insert(PostVO2 bag) {
 		ps.setString(6, bag.getPlace_code());
 		//==> insert into hr.MEMBER values ('a','a','a','a');
 		
-		System.out.println("3.SQL ¹® ºÎÇ°(°´Ã¼)À¸·Î ¸¸µé¾îÁÖ±â");
+	
 		
 		result = ps.executeUpdate();
-		System.out.println("4.SQL¹® ¿À¶óÅ¬·Î º¸³»±â ¼º°ø!");
+
 		if(result == 1){
-			System.out.println("°Ô½Ã¹°ÀÛ¼º¼º°ø!!");
+			System.out.println("ê¸€ì“°ê¸° ì„±ê³µ!!");
 		}
-//		System.out.println(result);
+
 	} catch (Exception e) {
-		// insert °¡ Á¦´ë·Î ½ÇÇàÀÌ ¾ÈµÈ °æ¿ì, À§ÇèÇÑ »óÈ²ÀÌ¶ó ÆÇ´Ü!
-		// catch°¡ ½ÇÇàµÈ´Ù.
+
 		result = 0;
 		e.printStackTrace();
 	}
