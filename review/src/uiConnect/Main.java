@@ -70,8 +70,8 @@ private static String id;
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Signin sin = new Signin();
-				sin.signin();
+				Signin singin = new Signin();
+				singin.open();
 				
 			}
 		});
