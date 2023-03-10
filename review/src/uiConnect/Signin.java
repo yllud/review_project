@@ -19,7 +19,7 @@ import dbConnect.MembersDAO;
 
 public class Signin {
 
-	public static void signin() {
+	public void open() {
 		JFrame f = new JFrame();
 		f.setTitle("나의 회원가입 화면");
 		f.setSize(500, 1000);
