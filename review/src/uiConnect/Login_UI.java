@@ -72,7 +72,7 @@ public class Login_UI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Signin sin = new Signin();
-				sin.signin();
+				sin.open();
 				
 			}
 		});
