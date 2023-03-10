@@ -22,7 +22,7 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 public class reservationUI {
 	public void open() {
-		Login_UI id = new Login_UI();
+		Main id = new Main();
 		int rnum = (int) (Math.random() * 9999);
 		String rid = id.getId();
 
@@ -63,7 +63,7 @@ public class reservationUI {
 		reservationDAO dao = new reservationDAO();
 
 		List<String> placeList;
-		placeList = dao.place(); 
+		placeList = dao.place();
 
 		JComboBox<String> cb = new JComboBox<>(placeList.toArray(new String[placeList.size()]));
 
@@ -93,29 +93,29 @@ public class reservationUI {
 		p7.add(idLabel2);
 		p2.setBackground(Color.pink);
 
-		peopleLabel.setBounds(70, 70, 200, 50);//200, 100, 300, 200
+		peopleLabel.setBounds(70, 70, 200, 50);// 200, 100, 300, 200
 		minusButton.setBounds(230, 70, 55, 50);
 		nLable.setBounds(310, 70, 20, 50);
 		plusButton.setBounds(360, 70, 55, 50);
-		
+
 		timeLable.setBounds(70, 200, 200, 30);
 		datePicker.setBounds(230, 200, 190, 30);
-		
+
 		placeLable.setBounds(70, 450, 200, 50);
 		cb.setBounds(230, 460, 190, 30);
-		
+
 		cb.setBackground(Color.white);
 		datePicker.setBackground(Color.pink);
-		
+
 		minusButton.setBackground(Color.white);
 		minusButton.setBorderPainted(false);
-		
+
 		plusButton.setBackground(Color.white);
 		plusButton.setBorderPainted(false);
-		
+
 		reserveButton.setBorderPainted(false);
 		reserveButton.setBackground(Color.pink);
-		
+
 		rnumLabel.setFont(font2);
 		rnumLabel2.setFont(font2);
 		rnumLabel2.setForeground(Color.pink);
@@ -190,7 +190,7 @@ public class reservationUI {
 					bag.setR_time(rtime);
 
 					dao.insert(bag);
-					
+
 					reservationUI2 RUI2 = new reservationUI2();
 					RUI2.open();
 					f.setVisible(false);
