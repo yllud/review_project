@@ -61,6 +61,8 @@ private static String id;
 					JOptionPane.showMessageDialog(null, "로그인 성공");
 					
 					//PlaceUI 연결
+					PlaceUI place = new PlaceUI();
+					place.open();
 				}
 				
 			}
