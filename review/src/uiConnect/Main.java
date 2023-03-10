@@ -63,6 +63,7 @@ private static String id;
 					//PlaceUI 연결
 					PlaceUI place = new PlaceUI();
 					place.open();
+					f.setVisible(false);
 				}
 				
 			}
