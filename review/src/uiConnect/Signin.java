@@ -70,6 +70,7 @@ public class Signin {
 				int result = dao.insert(bag);
 				if (result == 1) {
 					JOptionPane.showMessageDialog(f, "회원가입 성공");
+					f.setVisible(false);
 				}
 
 			}
