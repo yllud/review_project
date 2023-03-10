@@ -98,6 +98,7 @@ public class CommentUI {
 					JOptionPane.showMessageDialog(f, "댓글추가 성공");
 					
 					t1.append("\n"+writer+": "+content);
+					t2.setText("");
 				}
 				else {
 					JOptionPane.showMessageDialog(f, "댓글추가 실패");
