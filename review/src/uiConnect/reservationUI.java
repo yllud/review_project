@@ -23,7 +23,13 @@ import net.sourceforge.jdatepicker.impl.UtilDateModel;
 public class reservationUI {
 	public void open() {
 		Main id = new Main();
-		int rnum = (int) (Math.random() * 9999);
+		//예약 번호 자동 생성 (db에 가장높은 번호 불러와서 1씩 +)
+		reservationDAO dao = new reservationDAO();
+		reservationVO bag_max=new reservationVO();
+		bag_max=dao.no_max();
+		int rnum=bag_max.getMax_no()+1;
+		
+		
 		String rid = id.getId();
 
 		JFrame f = new JFrame();
@@ -63,8 +69,6 @@ public class reservationUI {
 		UtilDateModel model = new UtilDateModel();
 		JDatePanelImpl datePanel = new JDatePanelImpl(model);
 		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
-
-		reservationDAO dao = new reservationDAO();
 
 		List<String> placeList;
 		placeList = dao.place();

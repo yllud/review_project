@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import uiConnect.PostVO;
 import uiConnect.reservationVO;
 
 public class reservationDAO { // CRUD
@@ -88,7 +89,7 @@ public class reservationDAO { // CRUD
 		return pList;
 
 	}
-	
+
 	public ArrayList<reservationVO> rList() {
 		ResultSet rs = null; // 항목명 + 결과 데이터를 담고 있는 테이블
 
@@ -156,4 +157,46 @@ public class reservationDAO { // CRUD
 		return list;
 
 	}
+
+	public reservationVO no_max() {
+
+		ResultSet rs = null;
+		reservationVO bag = null;
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			System.out.println("1. 오라클과 자바 연결할 부품 설정 성공");
+
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String user = "system";
+			String password = "oracle";
+			Connection con = DriverManager.getConnection(url, user, password); // Connection
+			System.out.println("2. 오라클 연결 성공");
+
+			String sql = "select max(R_NUM) from hr.RESERVATION";
+			PreparedStatement ps = con.prepareStatement(sql); // PreparedStatement
+			// ps.setInt(1, );
+			System.out.println("3. r_no_max SQL문 부품(객체)으로 만들어주기");
+
+			rs = ps.executeQuery();
+
+			System.out.println("4. SQL문 오라클로 보내기 성공");
+			if (rs.next()) {
+				int max_no = rs.getInt(1);
+				System.out.println(max_no);
+				bag = new reservationVO();
+				bag.setMax_no(max_no);
+
+			} else {
+				System.out.println("검색 결과 없음.");
+			}
+
+			// System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return bag;
+	}
+
 }

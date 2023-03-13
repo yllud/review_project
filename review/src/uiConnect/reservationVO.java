@@ -6,7 +6,14 @@ public class reservationVO {
 	private String r_people;
 	private String r_place;
 	private String r_time;
+	private int max_no;
 	
+	public int getMax_no() {
+		return max_no;
+	}
+	public void setMax_no(int max_no) {
+		this.max_no = max_no;
+	}
 	public int getR_num() {
 		return r_num;
 	}
