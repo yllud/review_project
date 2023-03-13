@@ -3,6 +3,7 @@ package uiConnect;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -30,6 +31,8 @@ public class Post_UI1 {
 		// 화면을 만들어주고 싶음.
 		JFrame f = new JFrame();
 		f.setSize(980, 800);
+		Color backC = new Color(250, 245, 224);
+		f.getContentPane().setBackground(backC);
 
 		PostDAO dao = new PostDAO();
 		ArrayList<PostVO> list = dao.list(); // ArrayList<MemberVO>
@@ -58,16 +61,25 @@ public class Post_UI1 {
 		table.getColumn("작성자").setPreferredWidth(300);
 		table.getColumn("날짜").setPreferredWidth(900);
 		table.getColumn("별점").setPreferredWidth(300);
-		table.getRowHeight(500);
+		table.setRowHeight(100);
 		table.setBackground(new Color(251, 206, 177));
 		table.setGridColor(new Color(250, 245, 224));
 		table.setSelectionBackground(new Color(250, 245, 224));
 		JScrollPane scroll = new JScrollPane(table);
 		scroll.setPreferredSize(new Dimension(900, 550));
+		
 
+		Font font1 = new Font("돋움",Font.BOLD,20);
+		Color btnC = new Color(251, 206, 177);
+		Color fontC = new Color(247, 99, 12);
+		
 		JLabel l = new JLabel("	게시물 번호		");
 		JTextField t = new JTextField(10);
-		JButton b = new JButton("댓글보기");
+		RoundedButton b = new RoundedButton("댓글보기");
+		b.setPreferredSize(new Dimension(90,33));
+		l.setFont(font1);
+		t.setFont(font1);
+		b.setFont(font1);
 		
 
 		b.addActionListener(new ActionListener() {
