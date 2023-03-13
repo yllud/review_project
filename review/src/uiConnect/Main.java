@@ -78,11 +78,13 @@ private static String id;
 		RoundedButton b1 = new RoundedButton(" 로 그 인  ");
 		RoundedButton b2 = new RoundedButton("회원 가입 및 탈퇴");
 		RoundedButton b3 = new RoundedButton("비밀번호 찾기");
+		RoundedButton b4 = new RoundedButton("회원 목록");
 		
 		
 		b1.setPreferredSize(new Dimension(375,80));
 		b2.setPreferredSize(new Dimension(375,80));
 		b3.setPreferredSize(new Dimension(375,80));
+		b4.setPreferredSize(new Dimension(375,80));
 		
 		b1.addActionListener(new ActionListener() {
 			
@@ -141,14 +143,26 @@ private static String id;
 			} 
 		});
 		
+		b4.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("회원 목록");
+				AdminUI admin = new AdminUI();
+				admin.open();
+			} 
+		});
+		
 		b1.setFont(font1);
 		b2.setFont(font1);
 		b3.setFont(font1);
+		b4.setFont(font1);
 
 		f.add(p1);
 		p1.add(b1);
 		p1.add(b2);
 		p1.add(b3);
+		p1.add(b4);
 		
 		f.setVisible(true);
 	}

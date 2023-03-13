@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import uiConnect.MembersVO;
+import uiConnect.PlaceUI;
+import uiConnect.PostVO;
 
 public class MembersDAO {
 	
@@ -197,5 +200,58 @@ public class MembersDAO {
 		
 		return result;
 	}
-	
+	public ArrayList<MembersVO> list() {
+		ResultSet rs = null; //항목명+결과 데이터를 담고 있는 테이블
+		
+		ArrayList<MembersVO> list=new ArrayList<>();
+		MembersVO bag = null;
+		try {
+			// 1.오라클 11g와 연결한 부품 설정
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			System.out.println("1. 오라클과 자바 연결할 부품 설정 성공.");
+			
+			
+			// 2.오라클 11g에 연결해보자.(java --- oracle) 
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String user = "system";
+			String password = "oracle";
+			Connection con = DriverManager.getConnection(url, user, password); //Connection
+			//String data = JOptionPane.showInputDialog("이름입력"); //String, 임아무개 
+			System.out.println("2. 오라클 연결 성공.");
+			
+			
+			String sql = "select * from hr.members";
+			PreparedStatement ps = con.prepareStatement(sql); //PreparedStatement
+			//ps.setString(1, id);
+			System.out.println("3. SQL문 부품(객체)으로 만들어주기 성공.");
+			
+			rs = ps.executeQuery(); 
+			System.out.println("4. SQL문 오라클로 보내기 성공.");
+			while(rs.next()) {
+				System.out.println("검색 결과 있음 성공.");
+				
+				String id =rs.getString(1);
+				String pw=rs.getString(2);
+				String name=rs.getString(3);
+				int age= rs.getInt(4);
+				String mem_addr= rs.getString(5);
+		
+				bag = new MembersVO();
+				bag.setId(id);
+				bag.setPw(pw);
+				bag.setName(name);
+				bag.setAge(age);
+				bag.setMem_addr(mem_addr);
+				
+				list.add(bag);
+				
+			}
+			//System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+		
+	}
 }
