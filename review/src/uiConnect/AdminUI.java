@@ -20,7 +20,7 @@ public class AdminUI {
 
 	public void open() {
 		JFrame f = new JFrame();
-		f.setSize(980, 800);
+		f.setSize(700, 400);
 
 		MembersDAO dao = new MembersDAO();
 		ArrayList<MembersVO> list = dao.list(); // ArrayList<MemberVO>
@@ -47,9 +47,9 @@ public class AdminUI {
 		table.getColumn("회원 이름").setPreferredWidth(900);
 		table.getColumn("나이").setPreferredWidth(300);
 		table.getColumn("주소").setPreferredWidth(1000);
-		table.getRowHeight(500);
+		table.getRowHeight(1000);
 		JScrollPane scroll = new JScrollPane(table);
-		scroll.setPreferredSize(new Dimension(900, 550));
+		scroll.setPreferredSize(new Dimension(500, 250));
 
 	
 
