@@ -1,5 +1,6 @@
 package uiConnect;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -21,7 +22,7 @@ public class AdminUI {
 	public void open() {
 		JFrame f = new JFrame();
 		f.setSize(700, 400);
-
+		f.getContentPane().setBackground(new Color(250,245,224));
 		MembersDAO dao = new MembersDAO();
 		ArrayList<MembersVO> list = dao.list(); // ArrayList<MemberVO>
 
@@ -47,10 +48,17 @@ public class AdminUI {
 		table.getColumn("회원 이름").setPreferredWidth(900);
 		table.getColumn("나이").setPreferredWidth(300);
 		table.getColumn("주소").setPreferredWidth(1000);
-		table.getRowHeight(1000);
+		table.setRowHeight(50);
 		JScrollPane scroll = new JScrollPane(table);
-		scroll.setPreferredSize(new Dimension(500, 250));
-
+		scroll.setPreferredSize(new Dimension(500, 300));
+		
+		Color backC = new Color(251, 206, 177);
+		Color btnC = new Color(250,245,224);
+		table.setBackground(backC);
+		table.setGridColor(btnC);
+		table.setSelectionBackground(btnC);
+		table.setForeground(new Color(106, 134, 173));
+		
 	
 
 		f.setLayout(new FlowLayout());
