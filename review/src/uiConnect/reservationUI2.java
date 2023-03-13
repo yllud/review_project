@@ -1,12 +1,17 @@
 package uiConnect;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import dbConnect.reservationDAO;
 
@@ -40,18 +45,26 @@ public class reservationUI2 {
 
 		Color backC = new Color(250, 245, 224);
 		Color btnC = new Color(251, 206, 177);
-		
-		JTable table = new JTable(all, header);
-		table.setBackground(backC);
-		table.setGridColor(btnC);
-		table.setSelectionBackground(btnC);
+
+		DefaultTableModel model = new DefaultTableModel(all, header);
+		JTable table = new JTable(model);
+		table.setBackground(btnC);
+		table.setGridColor(backC);
+		table.setSelectionBackground(backC);
 		JScrollPane scroll = new JScrollPane(table);
+		scroll.setPreferredSize(new Dimension(480, 400));
+		table.setRowHeight(100);
+
+		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+		dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcm = table.getColumnModel();
+		for (int i = 0; i < tcm.getColumnCount(); i++) {
+			tcm.getColumn(i).setCellRenderer(dtcr);
+		}
 
 		f.setLayout(new FlowLayout());
-		f.getContentPane().setBackground(btnC);
+		f.getContentPane().setBackground(backC);
 
-		f.setLayout(new FlowLayout());
-		f.getContentPane().setBackground(Color.white);
 
 		f.add(scroll);
 
