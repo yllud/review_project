@@ -34,11 +34,10 @@ public class Post_UI2 {
 		JTextField t4 = new JTextField(10);
 		JTextField t5 = new JTextField(10);
 
-		JButton b1 = new JButton("게시판 글쓰기 처리");
-		JButton b2 = new JButton("게시판 지우기 처리");
-		JButton b3 = new JButton("게시판 수정 처리");
-		JButton b4 = new JButton("게시판 검색 처리");
-		JButton b5 = new JButton("댓글 보기");
+		RoundedButton b1 = new RoundedButton("게시판 글쓰기 처리");
+		RoundedButton b2 = new RoundedButton("게시판 지우기 처리");
+		RoundedButton b3 = new RoundedButton("게시판 수정 처리");
+
 
 
 		FlowLayout flow = new FlowLayout();
