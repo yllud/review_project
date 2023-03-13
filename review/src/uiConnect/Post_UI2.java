@@ -174,7 +174,7 @@ public class Post_UI2 {
 		f.add(b1);
 		f.add(b2);
 		f.add(b3);
-
+		f.add(l7);
 
 
 		l2.setFont(font2);
