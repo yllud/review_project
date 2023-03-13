@@ -59,6 +59,9 @@ public class Post_UI1 {
 		table.getColumn("날짜").setPreferredWidth(900);
 		table.getColumn("별점").setPreferredWidth(300);
 		table.getRowHeight(500);
+		table.setBackground(new Color(251, 206, 177));
+		table.setGridColor(new Color(250, 245, 224));
+		table.setSelectionBackground(new Color(250, 245, 224));
 		JScrollPane scroll = new JScrollPane(table);
 		scroll.setPreferredSize(new Dimension(900, 550));
 

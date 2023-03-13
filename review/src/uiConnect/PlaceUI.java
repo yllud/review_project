@@ -76,7 +76,7 @@ public class PlaceUI {
 
 		RoundedButton btn_find = new RoundedButton("상호명 검색");
 		RoundedButton btn_pass = new RoundedButton("게시물 보기");
-		RoundedButton btn_update = new RoundedButton("상호명 수정");
+		RoundedButton btn_update = new RoundedButton("정 보  수 정");
 		RoundedButton btn_write = new RoundedButton("게시물 작성");
 		RoundedButton btn_reservation = new RoundedButton("예약하기");
 		btn_find.setFont(font);
