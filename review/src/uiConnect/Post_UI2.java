@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -55,6 +54,14 @@ public class Post_UI2 {
 		Font font = new Font("돋움", Font.BOLD, 40);
 		
 		Font font2 = new Font("휴먼편지체", Font.BOLD, 40);
+		
+		//아이디와 게시할 지점 받아옴
+		PlaceUI pu = new PlaceUI();
+		Main mu = new Main();
+		String place_code=pu.getPlace_code();
+		String writer = mu.getId();
+		t4.setText(writer);
+		t4.setEditable(false);
 
 	
 
@@ -66,7 +73,6 @@ public class Post_UI2 {
 				String no = t1.getText();
 				String title = t2.getText();
 				String content = t3.getText();
-				String writer = t4.getText();
 				String score = t5.getText();
 				int no2 = Integer.parseInt(no);
 				int score2 = Integer.parseInt(score);
@@ -82,7 +88,7 @@ public class Post_UI2 {
 				bag.setContent(content);
 				bag.setWriter(writer);
 				bag.setScore(score2);
-				bag.setPlace_code("1111");
+				bag.setPlace_code(place_code);
 				int result = dao.insert(bag);
 				if (result == 1) {
 					JOptionPane.showMessageDialog(f, "글쓰기 성공!!");
