@@ -198,5 +198,35 @@ public class reservationDAO { // CRUD
 
 		return bag;
 	}
+	
+	public int delete(int num) {
+		int result = 0;
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			System.out.println("1. 오라클과 자바 연결할 부품 설정 성공.");
+
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String user = "system";
+			String password = "oracle";
+			Connection con = DriverManager.getConnection(url, user, password); // Connection
+			System.out.println("2. 오라클 연결 성공.");
+			String sql = "delete from hr.RESERVATION where R_NUM = ? ";
+			PreparedStatement ps = con.prepareStatement(sql); // PreparedStatement
+			ps.setInt(1, num);
+			System.out.println("3. SQL문 부품(객체)으로 만들어주기 성공.");
+
+			result = ps.executeUpdate();
+			System.out.println("4. SQL문 오라클로 보내기 성공.");
+			if (result == 1) {
+				System.out.println("탈퇴 성공.");
+			}
+			// System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 
 }

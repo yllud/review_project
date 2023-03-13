@@ -3,8 +3,12 @@ package uiConnect;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -12,8 +16,10 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 import dbConnect.reservationDAO;
+import project.RoundedButton;
 
 public class reservationUI2 {
 
@@ -45,6 +51,9 @@ public class reservationUI2 {
 
 		Color backC = new Color(250, 245, 224);
 		Color btnC = new Color(251, 206, 177);
+		Color fontC = new Color(247, 99, 12);
+		
+		Font font = new Font("돋움", Font.BOLD, 20);
 
 		DefaultTableModel model = new DefaultTableModel(all, header);
 		JTable table = new JTable(model);
@@ -64,10 +73,33 @@ public class reservationUI2 {
 
 		f.setLayout(new FlowLayout());
 		f.getContentPane().setBackground(backC);
+		
+		JButton dbtn = new RoundedButton("삭제");
+		dbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
+				if (table.getSelectedRow() == -1) {
+					return;
+				} else {
+					TableModel data = table.getModel();
+					int num = Integer.parseInt((String) data.getValueAt(table.getSelectedRow(), 0));
+					System.out.println(num);
+					model.removeRow(table.getSelectedRow());
+					dao.delete(num);
+				}
+
+			}
+
+		});
 
 		f.add(scroll);
-
+		f.add(dbtn);
+		
+		dbtn.setForeground(fontC);
+		dbtn.setBackground(btnC);
+		dbtn.setFont(font);
+		dbtn.setBorderPainted(false);
+		
 		f.setLocation(600, 300);
 		f.setVisible(true);
 	}
