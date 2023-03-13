@@ -1,15 +1,19 @@
 package uiConnect;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import dbConnect.MembersDAO;
@@ -29,22 +33,66 @@ public class Login_UI {
 		JFrame f = new JFrame();
 		f.setSize(500,700);
 		f.setTitle("로그인 화면");
-		FlowLayout flow = new FlowLayout();
-		f.setLayout(flow);
+		f.getContentPane().setBackground(new Color(250,245,224));
+		f.setLayout(null);
 		
-		Font font1 = new Font("D2Coding",Font.BOLD,40);
-		Font font2 = new Font("D2Coding",Font.BOLD,80);
+		JPanel p1 = new JPanel();
 	
 		
-		JLabel l1 = new JLabel("아이디");
-		JLabel l2 = new JLabel("패스워드");
+		p1.setBounds(0,0,500,700);
+		p1.setBackground(new Color(250,245,224));
+//		p2.setBounds(0,200,500,500);
+//		p2.setBackground(new Color(250,245,224));
+		
+		Font font1 = new Font("돋움",Font.BOLD,40);
 		
 		JTextField t1 = new JTextField(10);
+		t1.setText("아이디");
+		t1.setFont(font1);
+		t1.setBackground(new Color(251, 206, 177));
+		t1.setForeground(new Color(106, 134, 173));
 		JTextField t2 = new JTextField(10);
+		t2.setText("패스워드");
+		t2.setFont(font1);
+		t2.setBackground(new Color(251, 206, 177));
+		t2.setForeground(new Color(106, 134, 173));
 		
-		JButton b1 = new JButton("로그인");
-		JButton b2 = new JButton("회원 가입 및 탈퇴");
-		JButton b3 = new JButton("비밀번호 찾기");
+		t1.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                t1.setText("");
+            }
+        });
+		
+		t2.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                t2.setText("");
+            }
+        });
+		
+		JLabel l1 = new JLabel("로그인");
+		l1.setFont(font1);
+		
+		p1.add(l1);
+		p1.add(t1);
+		p1.add(t2);
+		
+		JLabel l2 = new JLabel("----------------");
+		l2.setFont(font1);
+		p1.add(l2);
+		
+		
+		RoundedButton b1 = new RoundedButton(" 로 그 인  ");
+		RoundedButton b2 = new RoundedButton("회원 가입 및 탈퇴");
+		RoundedButton b3 = new RoundedButton("비밀번호 찾기");
+		
+		
+		b1.setPreferredSize(new Dimension(375,80));
+		b2.setPreferredSize(new Dimension(375,80));
+		b3.setPreferredSize(new Dimension(375,80));
+		
+		
 		b1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -97,25 +145,16 @@ public class Login_UI {
 				}
 			} 
 		});
-		
-	
-		
-		l1.setFont(font1);
-		l2.setFont(font1);
-		t1.setFont(font1);
-		t2.setFont(font1);
-		b1.setFont(font2);
+
+		b1.setFont(font1);
 		b2.setFont(font1);
 		b3.setFont(font1);
 		
 
-		f.add(l1);
-		f.add(t1);
-		f.add(l2);
-		f.add(t2);
-		f.add(b1);
-		f.add(b2);
-		f.add(b3);
+		f.add(p1);
+		p1.add(b1);
+		p1.add(b2);
+		p1.add(b3);
 		
 		
 		
