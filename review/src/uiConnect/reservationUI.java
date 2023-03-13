@@ -43,8 +43,8 @@ public class reservationUI {
 		JButton plusButton = new JButton("+");
 		JButton reserveButton = new JButton("예약");
 
-		Font font = new Font("D2Coding", Font.BOLD, 30);
-		Font font2 = new Font("D2Coding", Font.BOLD, 20);
+		Font font = new Font("돋움", Font.BOLD, 30);
+		Font font2 = new Font("돋움", Font.BOLD, 20);
 
 		JPanel p1 = new JPanel();
 		JPanel p2 = new JPanel();
@@ -52,6 +52,9 @@ public class reservationUI {
 		JPanel p6 = new JPanel();
 		JPanel p7 = new JPanel();
 
+		Color backC = new Color(250, 245, 224);
+		Color btnC = new Color(251, 206, 177);
+		
 		p1.setBounds(0, 0, 500, 50);
 		p2.setBounds(50, 30, 400, 550);
 		p5.setBounds(0, 600, 500, 100);
@@ -91,7 +94,7 @@ public class reservationUI {
 		p6.add(rnumLabel2);
 		p7.add(idLabel);
 		p7.add(idLabel2);
-		p2.setBackground(Color.pink);
+		p2.setBackground(backC);
 
 		peopleLabel.setBounds(70, 70, 200, 50);// 200, 100, 300, 200
 		minusButton.setBounds(230, 70, 55, 50);
@@ -104,24 +107,24 @@ public class reservationUI {
 		placeLable.setBounds(70, 450, 200, 50);
 		cb.setBounds(230, 460, 190, 30);
 
-		cb.setBackground(Color.white);
-		datePicker.setBackground(Color.pink);
-
-		minusButton.setBackground(Color.white);
+		cb.setBackground(btnC);
+		datePicker.setBackground(backC);
+		
+		minusButton.setBackground(btnC);
 		minusButton.setBorderPainted(false);
-
-		plusButton.setBackground(Color.white);
+		
+		plusButton.setBackground(btnC);
 		plusButton.setBorderPainted(false);
-
+		
 		reserveButton.setBorderPainted(false);
-		reserveButton.setBackground(Color.pink);
+		reserveButton.setBackground(btnC);
 
 		rnumLabel.setFont(font2);
 		rnumLabel2.setFont(font2);
-		rnumLabel2.setForeground(Color.pink);
+		rnumLabel2.setForeground(btnC);
 		idLabel.setFont(font2);
 		idLabel2.setFont(font2);
-		idLabel2.setForeground(Color.pink);
+		idLabel2.setForeground(btnC);
 		peopleLabel.setFont(font);
 		peopleLabel.setFont(font);
 		timeLable.setFont(font);
@@ -134,11 +137,11 @@ public class reservationUI {
 		f.add(p1);
 		f.add(p2);
 		f.add(p5);
-		f.getContentPane().setBackground(Color.white);
-		p1.setBackground(Color.white);
-		p5.setBackground(Color.white);
-		p6.setBackground(Color.white);
-		p7.setBackground(Color.white);
+		f.getContentPane().setBackground(backC);
+		p1.setBackground(backC);
+		p5.setBackground(backC);
+		p6.setBackground(backC);
+		p7.setBackground(backC);
 
 		minusButton.addActionListener(new ActionListener() {
 

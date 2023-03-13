@@ -38,11 +38,17 @@ public class reservationUI2 {
 			}
 		} // else
 
+		Color backC = new Color(250, 245, 224);
+		Color btnC = new Color(251, 206, 177);
+		
 		JTable table = new JTable(all, header);
-		table.setBackground(Color.pink);
-		table.setGridColor(Color.white);
-		table.setSelectionBackground(Color.white);
+		table.setBackground(backC);
+		table.setGridColor(btnC);
+		table.setSelectionBackground(btnC);
 		JScrollPane scroll = new JScrollPane(table);
+
+		f.setLayout(new FlowLayout());
+		f.getContentPane().setBackground(btnC);
 
 		f.setLayout(new FlowLayout());
 		f.getContentPane().setBackground(Color.white);
