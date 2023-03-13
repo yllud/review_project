@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import dbConnect.PostDAO;
 
+
 public class Post_UI2 {
 	public void open() {
 		JFrame f = new JFrame();
@@ -43,7 +44,7 @@ public class Post_UI2 {
 		FlowLayout flow = new FlowLayout();
 
 	
-		Font font = new Font("궁서", Font.BOLD, 40);
+		Font font = new Font("돋움", Font.BOLD, 40);
 
 	
 
@@ -130,41 +131,6 @@ public class Post_UI2 {
 
 
 
-		b4.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				String no = t1.getText();
-				int no2 = Integer.parseInt(no);
-				PostDAO dao = new PostDAO();
-				PostVO bag = dao.one(no2);
-				if (bag != null) {
-					t2.setText(bag.getTitle());
-					t3.setText(bag.getContent());
-					t4.setText(bag.getWriter());
-					t2.setBackground(Color.pink);
-					t3.setBackground(Color.pink);
-					t4.setBackground(Color.pink);
-				} else {
-					t2.setText("");
-					t3.setText("");
-					t4.setText("");
-					JOptionPane.showMessageDialog(f, "검색 실패 게시물 번호를 확인해주세요");
-				}
-
-			}// action
-		});// b4
-		
-		b5.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				// Comment 오픈
-				
-			}
-		});
 
 		
 		f.setLayout(flow);
@@ -183,8 +149,7 @@ public class Post_UI2 {
 		f.add(b1);
 		f.add(b2);
 		f.add(b3);
-		f.add(b4);
-		f.add(b5);
+
 
 
 		l2.setFont(font);
@@ -200,9 +165,10 @@ public class Post_UI2 {
 		b1.setFont(font);
 		b2.setFont(font);
 		b3.setFont(font);
-		b4.setFont(font);
-		b5.setFont(font);
 
+
+		
+		
 		t1.setBackground(Color.yellow);
 		t1.setForeground(Color.red);
 		t2.setBackground(Color.yellow);
@@ -220,12 +186,9 @@ public class Post_UI2 {
 		b2.setForeground(Color.blue);
 		b3.setBackground(Color.pink);
 		b3.setForeground(Color.blue);
-		b4.setBackground(Color.pink);
-		b4.setForeground(Color.blue);
-		b5.setBackground(Color.pink);
-		b5.setForeground(Color.blue);
 
-		f.getContentPane().setBackground(Color.pink);
+
+		f.getContentPane().setBackground(new Color(250, 245,224));
 
 		f.setVisible(true);
 
