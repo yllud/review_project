@@ -28,7 +28,7 @@ public class reservationUI {
 
 		JFrame f = new JFrame();
 		f.setTitle("예약");
-		f.setSize(515, 700);
+		f.setSize(515, 720);
 
 		JLabel rnumLabel = new JLabel("예약번호 ");
 		JLabel rnumLabel2 = new JLabel(String.valueOf(rnum));
@@ -39,9 +39,9 @@ public class reservationUI {
 		JLabel placeLable = new JLabel("예약 장소");
 		JLabel nLable = new JLabel("0");
 
-		JButton minusButton = new JButton("-");
-		JButton plusButton = new JButton("+");
-		JButton reserveButton = new JButton("예약");
+		JButton minusButton = new RoundedButton("-");
+		JButton plusButton = new RoundedButton("+");
+		JButton reserveButton = new RoundedButton("예약");
 
 		Font font = new Font("돋움", Font.BOLD, 30);
 		Font font2 = new Font("돋움", Font.BOLD, 20);
@@ -54,6 +54,7 @@ public class reservationUI {
 
 		Color backC = new Color(250, 245, 224);
 		Color btnC = new Color(251, 206, 177);
+		Color fontC = new Color(247, 99, 12);
 		
 		p1.setBounds(0, 0, 500, 50);
 		p2.setBounds(50, 30, 400, 550);
@@ -74,7 +75,7 @@ public class reservationUI {
 		// String date = model.getYear() + "-" + (model.getMonth() + 1) + "-" +
 		// model.getDay();
 
-		reserveButton.setPreferredSize(new Dimension(500, 60));
+		reserveButton.setPreferredSize(new Dimension(470, 60));
 
 		f.setLayout(null);
 
@@ -96,29 +97,32 @@ public class reservationUI {
 		p7.add(idLabel2);
 		p2.setBackground(backC);
 
-		peopleLabel.setBounds(70, 70, 200, 50);// 200, 100, 300, 200
+		peopleLabel.setBounds(70, 70, 200, 50);//200, 100, 300, 200
 		minusButton.setBounds(230, 70, 55, 50);
 		nLable.setBounds(310, 70, 20, 50);
 		plusButton.setBounds(360, 70, 55, 50);
-
+		
 		timeLable.setBounds(70, 200, 200, 30);
 		datePicker.setBounds(230, 200, 190, 30);
-
+		
 		placeLable.setBounds(70, 450, 200, 50);
 		cb.setBounds(230, 460, 190, 30);
-
+		
 		cb.setBackground(btnC);
 		datePicker.setBackground(backC);
 		
 		minusButton.setBackground(btnC);
+		minusButton.setForeground(fontC);
 		minusButton.setBorderPainted(false);
 		
 		plusButton.setBackground(btnC);
+		plusButton.setForeground(fontC);
 		plusButton.setBorderPainted(false);
 		
 		reserveButton.setBorderPainted(false);
 		reserveButton.setBackground(btnC);
-
+		reserveButton.setForeground(fontC);
+		
 		rnumLabel.setFont(font2);
 		rnumLabel2.setFont(font2);
 		rnumLabel2.setForeground(btnC);
