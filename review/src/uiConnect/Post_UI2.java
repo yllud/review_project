@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,13 +21,21 @@ public class Post_UI2 {
 	public void open() {
 		JFrame f = new JFrame();
 		f.setTitle("게시판 화면");
-		f.setSize(1150, 900);
+		f.setSize(1200, 1200);
+		
+		ImageIcon star = new ImageIcon("star0.png");
+		ImageIcon star1 = new ImageIcon("star1.png");
+		ImageIcon star2 = new ImageIcon("star2.png");
+		ImageIcon star3 = new ImageIcon("star3.png");
+		ImageIcon star4 = new ImageIcon("star4.png");
+		ImageIcon star5 = new ImageIcon("star5.png");
 
 		JLabel l2 = new JLabel("게시판 번호");
 		JLabel l3 = new JLabel("게시판 제목");
 		JLabel l4 = new JLabel("게시판 내용");
 		JLabel l5 = new JLabel("게시판 작성자");
 		JLabel l6 = new JLabel("별점");
+		JLabel l7 = new JLabel();
 
 		JTextField t1 = new JTextField(5);
 		JTextField t2 = new JTextField(10);
@@ -44,6 +53,8 @@ public class Post_UI2 {
 
 	
 		Font font = new Font("돋움", Font.BOLD, 40);
+		
+		Font font2 = new Font("휴먼편지체", Font.BOLD, 40);
 
 	
 
@@ -82,6 +93,21 @@ public class Post_UI2 {
 					t3.setText("");
 					t4.setText("");
 				}
+				if (score.equals("0")) {
+					l7.setIcon(star);
+				}else if (score.equals("1")) {
+					l7.setIcon(star1);
+				}
+				if (score.equals("2")) {
+					l7.setIcon(star2);
+				}else if (score.equals("3")) {
+					l7.setIcon(star3);
+				}
+				if (score.equals("4")) {
+					l7.setIcon(star4);
+				}else if (score.equals("5")) {
+					l7.setIcon(star5);
+				}
 			}// action
 		});// b1
 
@@ -111,7 +137,7 @@ public class Post_UI2 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String no = t1.getText();
-				String title = t4.getText(); // ""
+				String title = t2.getText(); // ""
 				
 				int no2 = Integer.parseInt(no);
 				PostDAO dao = new PostDAO();
@@ -151,40 +177,36 @@ public class Post_UI2 {
 
 
 
-		l2.setFont(font);
-		l3.setFont(font);
-		l4.setFont(font);
-		l5.setFont(font);
-		l6.setFont(font);
+		l2.setFont(font2);
+		l3.setFont(font2);
+		l4.setFont(font2);
+		l5.setFont(font2);
+		l6.setFont(font2);
 		t1.setFont(font);
 		t2.setFont(font);
 		t3.setFont(font);
 		t4.setFont(font);
 		t5.setFont(font);
-		b1.setFont(font);
-		b2.setFont(font);
-		b3.setFont(font);
+		b1.setFont(font2);
+		b2.setFont(font2);
+		b3.setFont(font2);
 
-
+		t1.setBorder(null);
+		t2.setBorder(null);
+		t4.setBorder(null);
+		t5.setBorder(null);
 		
-		
-		t1.setBackground(Color.yellow);
-		t1.setForeground(Color.red);
-		t2.setBackground(Color.yellow);
-		t2.setForeground(Color.red);
-		t3.setBackground(Color.yellow);
-		t3.setForeground(Color.red);
-		t4.setBackground(Color.yellow);
-		t4.setForeground(Color.red);
-		t5.setBackground(Color.yellow);
-		t5.setForeground(Color.red);
+		t1.setBackground(Color.white);
+		t1.setForeground(Color.black);
+		t2.setBackground(Color.white);
+		t2.setForeground(Color.black);
+		t3.setBackground(Color.white);
+		t3.setForeground(Color.black);
+		t4.setBackground(Color.white);
+		t4.setForeground(Color.black);
+		t5.setBackground(Color.white);
+		t5.setForeground(Color.black);
 
-		b1.setBackground(Color.pink); 
-		b1.setForeground(Color.blue); 
-		b2.setBackground(Color.pink);
-		b2.setForeground(Color.blue);
-		b3.setBackground(Color.pink);
-		b3.setForeground(Color.blue);
 
 
 		f.getContentPane().setBackground(new Color(250, 245,224));
